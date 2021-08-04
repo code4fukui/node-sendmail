@@ -73,16 +73,16 @@ try {
 
 Please checkout our great examples
 
-- **[simple.mjs](https://github.com/guileen/node-sendmail/blob/master/examples/simple.mjs)**
+- **[simple.mjs](examples/simple.mjs)**
 
 TODO: convert as ES ver
 
-- **[attachmentFile.js](https://github.com/guileen/node-sendmail/blob/master/examples/attachmentFile.js)**
-- **[developmentMode.js](https://github.com/guileen/node-sendmail/blob/master/examples/developmentMode.js)**
-- **[dkim.js](https://github.com/guileen/node-sendmail/blob/master/examples/dkim.js)**
-- **[meetingRequest.js](https://github.com/guileen/node-sendmail/blob/master/examples/meetingRequest.js)**
-- **[devHostPort.js](https://github.com/guileen/node-sendmail/blob/master/examples/devHostPort.js)**
-- **[smtpPort.js](https://github.com/guileen/node-sendmail/blob/master/examples/smtpPort.js)**
+- **[attachmentFile.js](examples/attachmentFile.js)**
+- **[developmentMode.js](examples/developmentMode.js)**
+- **[dkim.js](examples/dkim.js)**
+- **[meetingRequest.js](examples/meetingRequest.js)**
+- **[devHostPort.js](examples/devHostPort.js)**
+- **[smtpPort.js](examples/smtpPort.js)**
 
 ## Upgrading
 
