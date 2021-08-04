@@ -48,7 +48,7 @@ import { initSendmail } from "./sendmail.mjs";
 const sendmail = initSendmail();
 
 try {
-  const res = sendmail({
+  const res = await sendmail({
     from: 'no-reply@yourdomain.com',
     to: 'test@qq.com, test@sohu.com, test@163.com ',
     subject: 'test sendmail',
@@ -64,11 +64,14 @@ try {
 
 Please checkout our great examples
 
+- **[simple.mjs](https://github.com/guileen/node-sendmail/blob/master/examples/simple.mjs)**
+
+TODO: convert as ES ver
+
 - **[attachmentFile.js](https://github.com/guileen/node-sendmail/blob/master/examples/attachmentFile.js)**
 - **[developmentMode.js](https://github.com/guileen/node-sendmail/blob/master/examples/developmentMode.js)**
 - **[dkim.js](https://github.com/guileen/node-sendmail/blob/master/examples/dkim.js)**
 - **[meetingRequest.js](https://github.com/guileen/node-sendmail/blob/master/examples/meetingRequest.js)**
-- **[simple.js](https://github.com/guileen/node-sendmail/blob/master/examples/simple.js)**
 - **[devHostPort.js](https://github.com/guileen/node-sendmail/blob/master/examples/devHostPort.js)**
 - **[smtpPort.js](https://github.com/guileen/node-sendmail/blob/master/examples/smtpPort.js)**
 
@@ -164,6 +167,10 @@ Attachments can be used as embedded images in the HTML body. To use this feature
 ### 1.6.1
 
 * Rollback of autoparse
+
+### 1.7.0
+
+* change to ES module
 
 ## Questions, Comments & Concerns
 
