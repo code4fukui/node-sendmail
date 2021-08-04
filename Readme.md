@@ -19,7 +19,7 @@ If you're interested in helping out this repo, please check out the roadmap belo
 
 ## WARN
 
-```bash
+```
 npm WARN deprecated mailcomposer@3.12.0: This project is unmaintained
 npm WARN deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
 npm WARN deprecated buildmail@3.10.0: This project is unmaintained
@@ -59,9 +59,9 @@ const sendmail = initSendmail();
 try {
   const res = await sendmail({
     from: 'no-reply@yourdomain.com',
-    to: 'test@qq.com, test@sohu.com, test@163.com ',
+    to: 'test@qq.com, test@sohu.com, test@163.com',
     subject: 'test sendmail',
-    html: 'Mail of test sendmail ',
+    html: 'Mail of test sendmail',
   });
   console.log(res);
 } catch (e) {
