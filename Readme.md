@@ -168,7 +168,7 @@ Attachments can be used as embedded images in the HTML body. To use this feature
 
 * Rollback of autoparse
 
-### 1.7.0
+### ES module 0.0.1
 
 * change to ES module
 
