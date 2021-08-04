@@ -1,19 +1,6 @@
-[![npm][npm-image]][npm-url]
-[![downloads][downloads-image]][downloads-url]
-[![npm-issues][npm-issues-image]][npm-issues-url]
-[![js-standard-style][standard-image]][standard-url]
+# node-sendmail-es
 
-[standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
-[standard-url]: http://standardjs.com/
-[npm-image]: https://img.shields.io/npm/v/sendmail.svg?style=flat
-[npm-url]: https://npmjs.org/package/sendmail
-[downloads-image]: https://img.shields.io/npm/dt/sendmail.svg?style=flat
-[downloads-url]: https://npmjs.org/package/sendmail
-[npm-issues-image]: https://img.shields.io/github/issues/guileen/node-sendmail.svg
-[npm-issues-url]: https://github.com/guileen/node-sendmail/issues
-# node-sendmail
-
-Send mail without SMTP server
+Send mail without SMTP server ES module version
 
 If you're interested in helping out this repo, please check out the roadmap below to see if anything interests you
 
