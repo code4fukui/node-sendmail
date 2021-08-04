@@ -29,18 +29,12 @@ If you're interested in helping out this repo, please check out the roadmap belo
 * returnTo
 * Please submit your ideas as PR's
 
-## Install
-
-``` bash
-npm install sendmail --save
-# or
-yarn add sendmail
-```
-
 ## Options
 
-``` javascript
-const sendmail = require('sendmail')({
+```js
+import { initSendmail } from "./sendmail.mjs";
+
+const sendmail = initSendmail({
   logger: {
     debug: console.log,
     info: console.info,
@@ -62,17 +56,21 @@ const sendmail = require('sendmail')({
 ## Usage
 
 ``` javascript
-const sendmail = require('sendmail')();
+import { initSendmail } from "./sendmail.mjs";
 
-sendmail({
+const sendmail = initSendmail();
+
+try {
+  const res = sendmail({
     from: 'no-reply@yourdomain.com',
     to: 'test@qq.com, test@sohu.com, test@163.com ',
     subject: 'test sendmail',
     html: 'Mail of test sendmail ',
-  }, function(err, reply) {
-    console.log(err && err.stack);
-    console.dir(reply);
-});
+  });
+  console.log(res);
+} catch (e) {
+  console.log(e);
+};
 ```
 
 ## Examples

@@ -1,11 +1,14 @@
-const {createConnection} = require('net');
-const {connect} = require('tls');
-const {resolveMx} = require('dns');
-const {DKIMSign} = require('dkim-signer');
+import { createConnection } from 'net';
+import { connect } from 'tls';
+import { resolveMx } from 'dns';
+import { DKIMSign } from 'dkim-signer';
+import mailcomposer from 'mailcomposer';
+
 const CRLF = '\r\n';
 
-function dummy () {}
-module.exports = function (options) {
+const dummy = () => {};
+
+const initSendmail = function (options) {
   options = options || {};
   const logger = options.logger || (options.silent && {
     debug: dummy,
@@ -346,47 +349,64 @@ module.exports = function (options) {
    * @param callback function(err, domain).
    *
    */
-  function sendmail (mail, callback) {
-    const mailcomposer = require('mailcomposer');
-    const mailMe = mailcomposer(mail);
-    let recipients = [];
-    let groups;
-    let srcHost;
-    if (mail.to) {
-      recipients = recipients.concat(getAddresses(mail.to));
-    }
-
-    if (mail.cc) {
-      recipients = recipients.concat(getAddresses(mail.cc));
-    }
-
-    if (mail.bcc) {
-      recipients = recipients.concat(getAddresses(mail.bcc));
-    }
-
-    groups = groupRecipients(recipients);
-
-    const from = getAddress(mail.from);
-    srcHost = getHost(from);
-
-    mailMe.build(function (err, message) {
-      if (err) {
-        logger.error('Error on creating message : ', err);
-        callback(err, null);
-        return
+  const sendmail = async (mail) => {
+    return new Promise((resolve, reject) => {
+      const mailMe = mailcomposer(mail);
+      let recipients = [];
+      let groups;
+      let srcHost;
+      if (mail.to) {
+        recipients = recipients.concat(getAddresses(mail.to));
       }
-      if (dkimPrivateKey) {
-        const signature = DKIMSign(message, {
-          privateKey: dkimPrivateKey,
-          keySelector: dkimKeySelector,
-          domainName: srcHost
-        });
-        message = signature + '\r\n' + message;
+
+      if (mail.cc) {
+        recipients = recipients.concat(getAddresses(mail.cc));
       }
-      for (let domain in groups) {
-        sendToSMTP(domain, srcHost, from, groups[domain], message, callback);
+
+      if (mail.bcc) {
+        recipients = recipients.concat(getAddresses(mail.bcc));
       }
+
+      groups = groupRecipients(recipients);
+
+      const from = getAddress(mail.from);
+      srcHost = getHost(from);
+
+      mailMe.build(function (err, message) {
+        if (err) {
+          logger.error('Error on creating message : ', err);
+          //callback(err, null);
+          reject(err);
+          return
+        }
+        if (dkimPrivateKey) {
+          const signature = DKIMSign(message, {
+            privateKey: dkimPrivateKey,
+            keySelector: dkimKeySelector,
+            domainName: srcHost
+          });
+          message = signature + '\r\n' + message;
+        }
+        let ngrp = Object.keys(groups).length;
+        const msgs = [];
+        const callback = (err, mes) => {
+          if (err) {
+            reject(err);
+          } else {
+            ngrp--;
+            msgs.push(mes);
+            if (ngrp == 0) {
+              resolve(msgs);
+            }
+          }
+        };
+        for (let domain in groups) {
+          sendToSMTP(domain, srcHost, from, groups[domain], message, callback);
+        }
+      });
     });
   }
   return sendmail;
 };
+
+export { initSendmail };
