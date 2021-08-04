@@ -59,9 +59,9 @@ const sendmail = initSendmail();
 try {
   const res = await sendmail({
     from: 'no-reply@yourdomain.com',
-    to: 'test@qq.com, test@sohu.com, test@163.com ',
+    to: 'test@qq.com, test@sohu.com, test@163.com',
     subject: 'test sendmail',
-    html: 'Mail of test sendmail ',
+    html: 'Mail of test sendmail',
   });
   console.log(res);
 } catch (e) {
